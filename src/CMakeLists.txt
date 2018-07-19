@@ -1,9 +1,10 @@
 project(${CMAKE_PROJECT_NAME}_lib)
 
 set(HEADER_FILES
-)
+        Bowling.h
+        Frame.h)
 set(SOURCE_FILES
-)
+        )
 
 if (EXISTS ${SOURCE_FILES})
     # The library contains header and source files.

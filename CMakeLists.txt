@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.9)
-project(MyProject)
+project(Bowling-Kata)
 
 set(CMAKE_CXX_STANDARD 17)
 
