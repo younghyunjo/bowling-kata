@@ -14,11 +14,15 @@ public:
     int play(std::vector<std::vector<int>> input) {
         int total_score = 0;
         for (int i=0; i<10 ;i++) {
-            frame[i].roll(input[i]);
+            frame[i]._rool(input[i]);
+        }
+
+        for (int i=1; i<10; i++) {
+            frame[i - 1]._getBonux(input[i]);
         }
 
         for (int i=0; i<10 ;i++) {
-            total_score += frame[i].getScore();
+            total_score += frame[i]._getScore();
         }
         return total_score;
     }
