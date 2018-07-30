@@ -7,48 +7,50 @@
 
 class Frame {
 public:
-    Frame* prevFrame;
+    Frame(Frame* prevFrame = nullptr) : prevFrame(prevFrame) {}
 
-
-    enum State {
-        REMAINED,
-        SPARE,
-    };
-
-    int _rool(std::vector<int> pins) {
-        score += pins[0];
-        score += pins[1];
-
-        if (pins[0] != 10 && score == 10) {
-            remainedBonusPoint = 1;
-            state = SPARE;
+    void roll(int pinfalls) {
+        nrRolled++;
+        score += pinfalls;
+        if (prevFrame) {
+            prevFrame = prevFrame->rollFromNextFrame(pinfalls);
         }
+    }
+
+    int getScore() const {
         return score;
     }
 
-    int _getScore() {
-        return score;
-    }
-
-    int _getBonux(std::vector<int> pins) {
-        int bonusPoint = 0;
-        if (remainedBonusPoint > 0) {
-            bonusPoint += pins[0];
-            remainedBonusPoint--;
-            score += bonusPoint;
-        }
-
-        return bonusPoint;
-    }
-
-    State getState() {
-        return state;
+    int setPrevFrame(Frame* _prevFrame) {
+        prevFrame = _prevFrame;
     }
 
 private:
-    State state = REMAINED;
+    Frame* prevFrame;
     int score = 0;
-    int remainedBonusPoint = 0;
+    int nrRolled = 0;
+
+    Frame* rollFromNextFrame(int pinfalls) {
+        if (prevFrame) {
+            prevFrame = prevFrame->rollFromNextFrame(pinfalls);
+        }
+
+        if (score < 10)
+            return nullptr;
+
+        if (score >= 10 && nrRolled == 2) {
+            score += pinfalls;
+            return nullptr;
+        }
+
+        if (score == 10 && nrRolled == 1) {
+            score += pinfalls;
+            nrRolled++;
+            return this;
+        }
+
+        return nullptr;
+    }
 };
 
 #endif //BOWLING_KATA_FRAME_H

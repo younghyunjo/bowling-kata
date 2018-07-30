@@ -8,25 +8,16 @@
 #include "Bowling.h"
 
 TEST(BOWLING, play) {
-    std::vector<std::vector<int>> input;
-    for (int i=0; i<10; i++)
-        input.push_back({1, 0});
+    Bowling game;
 
-    Bowling b;
-    int score = b.play(input);
-    EXPECT_EQ(10, score);
-}
+    std::vector<std::vector<int>> pinFalls;
+    for (int i=0; i<9 ;i++)
+        pinFalls.push_back({10});
+    pinFalls.push_back({10, 10, 10});
 
-TEST(BOWLING, playWithSpare) {
-    std::vector<std::vector<int>> input;
-    input.push_back({1, 9});
-    for (int i=1; i<10; i++)
-        input.push_back({1, 0});
+    game.play(pinFalls);
+    int score = game.getScore();
 
-
-
-    Bowling b;
-    int score = b.play(input);
-    EXPECT_EQ(20, score);
+    EXPECT_EQ(300, score);
 }
 
