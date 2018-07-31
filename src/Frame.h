@@ -9,7 +9,7 @@ class Frame {
 public:
     Frame(Frame* prevFrame = nullptr) : prevFrame(prevFrame) {}
 
-    void roll(int pinfalls) {
+    auto roll(int pinfalls) {
         nrRolled++;
         score += pinfalls;
         if (prevFrame) {
@@ -17,7 +17,7 @@ public:
         }
     }
 
-    int getScore() const {
+    auto getScore() const ->int {
         return score;
     }
 
@@ -30,7 +30,7 @@ private:
     int score = 0;
     int nrRolled = 0;
 
-    Frame* rollFromNextFrame(int pinfalls) {
+    auto rollFromNextFrame(int pinfalls) -> Frame* {
         if (prevFrame) {
             prevFrame = prevFrame->rollFromNextFrame(pinfalls);
         }
@@ -38,18 +38,25 @@ private:
         if (score < 10)
             return nullptr;
 
-        if (score >= 10 && nrRolled == 2) {
+        if (isSpare()) {
             score += pinfalls;
             return nullptr;
         }
 
-        if (score == 10 && nrRolled == 1) {
+        if (isStrike()) {
             score += pinfalls;
             nrRolled++;
             return this;
         }
 
         return nullptr;
+    }
+
+    auto isSpare() -> bool {
+        return score >= 10 && nrRolled == 2;
+    }
+    auto isStrike() -> bool {
+        return score == 10 && nrRolled == 1;
     }
 };
 

@@ -16,7 +16,7 @@ public:
         }
     };
 
-    int play(std::vector<std::vector<int>> input) {
+    auto play(std::vector<std::vector<int>> input) {
         for (int i=0; i<10; i++) {
             std::vector<int>pinFalls = input[i];
             for (auto p : pinFalls)
@@ -31,7 +31,6 @@ public:
         }
         return score;
     }
-
 
 private:
     Frame frames[10];
