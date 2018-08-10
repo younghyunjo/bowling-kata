@@ -11,8 +11,6 @@
 
 #include "Throw.h"
 
-class ImFrame {
-};
 
 class Frame {
 public:

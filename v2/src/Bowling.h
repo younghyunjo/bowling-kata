@@ -20,30 +20,51 @@ private:
     const std::vector<int> m_pinfalls;
 };
 
-//class Pinfalls {
-//public:
-//    Pinfalls (std::vector<std::vector<int>> pinfalls) {
-//
-//    }
-//
-//private:
-//    const Pinfall m_pinfalls[10];
-//};
-
-
 class Bowling {
 public:
     void play(std::vector<std::vector<int>> pins) {
-        Frame frames[10];
-        std::transform(std::begin(pins), std::end(pins), std::begin(frames), [](std::vector<int> p){
-            return Frame(p);
-        });
+
+        auto combinedPinfalls = pinfallsCombineForSingleFrame(pins);
+
+
+        //TODO
+
     }
 
     int score() {
+        //TODO
         return 10;
     }
 
 private:
+    std::vector<std::vector<std::vector<int>>> pinfallsCombineForSingleFrame(std::vector<std::vector<int>>& pins) {
+        std::vector<std::vector<std::vector<int>>> ret;
+
+        for (auto it = std::begin(pins); it < std::end(pins); it++) {
+            int n = 3;
+            if (it == std::end(pins) - 2)
+                n = 2;
+            else if (it == std::end(pins) -1)
+                n = 1;
+
+            ret.push_back(std::vector<std::vector<int>>{it, it+n});
+        }
+
+        /*
+        std::for_each(std::begin(ret), std::end(ret), [](auto b) {
+            std::cout << "size:" << b.size() << std::endl;
+            std::for_each(std::begin(b), std::end(b), [](auto c) {
+                std::for_each(std::begin(c), std::end(c), [](auto d) {
+                    std::cout << d << std::endl;
+                });
+                std::cout << std::endl;
+            });
+            std::cout << std::endl;
+        });
+        */
+
+        return ret;
+
+    }
 };
 
