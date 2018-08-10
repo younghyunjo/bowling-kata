@@ -21,7 +21,14 @@ link_directories(${GOOGLETEST_LIBRARY_PATH})
 set(GOOGLETEST_LIBRARY gtest gtest_main gmock gmock_main)
 #####################################################
 
-add_executable(tests tests.cpp)
+
+
+####################################################
+set (SUT_SOURCE ${${PROJECT_NAME}_SOURCE_DIR}/Frame.cpp Bowling.cpp ImmutableFrame.cpp)
+include_directories(${${PROJECT_NAME}_SOURCE_DIR})
+####################################################
+
+add_executable(tests Bowling.cpp Frame.cpp ${SUT_SOURCE} ../src/ImmutableFrame.cpp ../src/ImmutableFrame.h)
 add_dependencies(tests GoogleTest)
 
 target_link_libraries(tests ${GOOGLETEST_LIBRARY} pthread)
