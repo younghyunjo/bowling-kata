@@ -36,7 +36,7 @@ public:
 
         int newScore = std::accumulate(std::begin(pinfalls), std::end(pinfalls), currentScore);
         Throw newThrow = numberOfThrow + pinfalls.size();
-        std::cout << "Throw:" << newThrow << std::endl;
+//        std::cout << "Throw:" << newThrow << std::endl;
 
         return std::make_unique<ImmutableFrame>(newScore, newThrow);
     }
