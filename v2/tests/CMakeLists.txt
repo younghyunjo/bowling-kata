@@ -28,7 +28,7 @@ set(GOOGLETEST_LIBRARY gtest gtest_main gmock gmock_main)
 include_directories(${${PROJECT_NAME}_SOURCE_DIR})
 ####################################################
 
-add_executable(tests Bowling.cpp ImmutableFrame.cpp)
+add_executable(tests Bowling.cpp ImmutableFrame.cpp Frame.cpp)
 add_dependencies(tests GoogleTest)
 
 target_link_libraries(tests ${GOOGLETEST_LIBRARY} pthread)
