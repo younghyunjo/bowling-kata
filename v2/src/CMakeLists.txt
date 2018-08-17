@@ -1,1 +1,1 @@
-add_executable(bowling main.cpp Frame.cpp Frame.h Throw.h Bowling.cpp Bowling.h ImmutableFrame.cpp ImmutableFrame.h)
+add_executable(bowling main.cpp Frame.h Throw.h Bowling.h ImmutableFrame.h)
